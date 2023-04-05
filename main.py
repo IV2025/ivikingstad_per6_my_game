@@ -4,6 +4,11 @@
 # Build file and folder structures
 # Create libraries
 # 
+# Works Cited:
+#
+# https://cactusturtle.itch.io/bouncing-blue-blob?download
+#
+
 
 # import libs
 import pygame as pg
@@ -11,6 +16,7 @@ import os
 # import settings 
 from settings import *
 from sprites import *
+from os import path
 # from pg.sprite import Sprite
 
 # set up assets folders
@@ -29,9 +35,16 @@ class Game:
         self.clock = pg.time.Clock()
         self.running = True
         print(self.screen)
+
+        # to add images sounds etc copy below...
+        # still working on how to get an image to replace the normal controlled square sprite
+    def load_data(self):
+        self.player_img = pg.image.load(path.join(img_folder, "blob.jpg")).convert()
+        
     def new(self):
-        # starting a new game
+        # starts a new game
         self.score = 0
+        self.load_data()
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.enemies = pg.sprite.Group()

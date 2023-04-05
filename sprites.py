@@ -13,15 +13,33 @@ class Player(Sprite):
         Sprite.__init__(self)
         # these are the properties
         self.game = game
-        self.image = pg.Surface((50,50))
-        self.image.fill(AQUAMARINE)
+        self.image_orig = pg.transform.scale(game.player_img, (64, 64))
+        self.image_orig.set_colorkey(WHITE)
+        self.image = self.image_orig.copy()
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH/2, HEIGHT/2)
-        self.pos = vec(WIDTH/2, HEIGHT/2)
+        self.radius = int(self.rect.width * .85 / 2)
+        self.pos = vec(0, 0)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
         self.cofric = 0.1
         self.canjump = False
+        self.rot = 0
+        self.rot_speed = 0
+        self.last_update = pg.time.get_ticks()
+        self.left_key = pg.K_a
+        #Sprite.__init__(self)
+        # these are the properties
+        #self.game = game
+        # sprite_image = pg.image.load("blob.gif").convert_alpha()       attempting to integrate blob.gif instead of the main sprite
+        #self.image = pg.Surface((50,50))
+        #self.image.fill(AQUAMARINE)
+        #self.rect = self.image.get_rect()
+        #self.rect.center = (WIDTH/2, HEIGHT/2)
+        #self.pos = vec(WIDTH/2, HEIGHT/2)
+        #self.vel = vec(0,0)
+        #self.acc = vec(0,0)
+        #self.cofric = 0.1
+        #self.canjump = False
     def input(self):
         keystate = pg.key.get_pressed()
         # if keystate[pg.K_w]:

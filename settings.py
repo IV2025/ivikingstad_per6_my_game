@@ -20,7 +20,11 @@ PAUSED = False
 
 # Starting platforms
 PLATFORM_LIST = [(0, HEIGHT - 40, WIDTH, 40, (DARKGREY), "normal"),
-                 (WIDTH / 2 - 10, HEIGHT * 3 / 4, 100, 20, (PURPLE), "bouncey"),
-                 (125, HEIGHT - 350, 100, 5, (PURPLE), "disappearing "),
-                 (500, 200, 100, 40, (PURPLE), "normal"),
-                 (175, 500, 50, 20, (PURPLE), "normal")]
+                 (WIDTH / 2 - 10, HEIGHT * 3 / 4, 200, 20, (PURPLE), "bouncey"),
+                 (125, HEIGHT - 500, 100, 25, (PURPLE), "disappearing "),
+                 (500, 200, 250, 40, (PURPLE), "normal"),
+                 (250, 500, 50, 20, (PURPLE), "normal"),
+                 (200, 450, 50, 20, (PURPLE), "normal"),
+                 (150, 400, 50, 20, (PURPLE), "normal"),
+                 (100, 350, 50, 20, (PURPLE), "normal"),
+                 (50, 300, 50, 20, (PURPLE), "normal")]
