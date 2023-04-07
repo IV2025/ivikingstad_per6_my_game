@@ -2,6 +2,11 @@ import pygame as pg
 from pygame.sprite import Sprite
 from settings import *
 from random import randint
+import os
+from os import path
+
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, "images")
 
 
 vec = pg.math.Vector2
@@ -97,16 +102,28 @@ class Mob(Sprite):
         Sprite.__init__(self)
         self.width = width
         self.height = height
-        self.image = pg.Surface((self.width,self.height))
-        self.color = RED
-        self.image.fill(self.color)
+
+        self.mob_img = pg.image.load(path.join(img_folder, "evilblob.png")).convert()
+        self.mob_img.set_alpha(128)
+        # add these lines for using an image with the player...
+        # if not rotating, change image_orig to just image...
+        self.image_orig = pg.transform.scale(self.mob_img, (32, 32))
+        colorkey = self.image_orig.get_at((0, 0))
+        self.image_orig.set_colorkey(colorkey)
+        # ignore these lines - just for rotating...
+        self.image = self.image_orig.copy()
+        # self.image = pg.Surface((self.width,self.height))
+        # self.color = RED
+        # self.image.fill(self.color)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH/2, HEIGHT/2)
         self.pos = vec(WIDTH/2, HEIGHT/2)
         self.vel = vec(randint(1,5),randint(1,5))
         self.acc = vec(1,1)
         self.cofric = 0.01
+    
     # ...
+
     def inbounds(self):
         if self.rect.x > WIDTH:
             self.vel.x *= -1
